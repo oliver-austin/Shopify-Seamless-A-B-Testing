@@ -7,6 +7,7 @@ import {Query} from "react-apollo";
 import Modal from "@shopify/app-bridge-react/components/Modal";
 import ResourceListWithProducts from "./ResourceList";
 
+//TODO: fetch all variants, not first 10
 const GET_PRODUCT_BY_ID = gql`
   query getProducts($ids: [ID!]!) {
     nodes(ids: $ids) {
@@ -15,6 +16,7 @@ const GET_PRODUCT_BY_ID = gql`
         handle
         description
         id
+        totalVariants
         images(first: 1) {
           edges {
             node {
@@ -23,7 +25,7 @@ const GET_PRODUCT_BY_ID = gql`
             }
           }
         }
-        variants(first: 1) {
+        variants(first: 10) {
           edges {
             node {
               price
@@ -46,22 +48,32 @@ class CreateTestVariant extends React.Component {
     static contextType = Context;
     state = {
         productSelected: 'product',
-        variantSelected: "No Selection"
+        variantSelected: 0
     };
 
     render() {
         const productOrVariantSelectOptions = [{ label: 'Product', value: 'product' }, { label: 'Variants', value: 'variants' }];
-        //TODO: input actual variant options
-        const variantSelectOptions = [{ label: 'Product', value: 'product' }, { label: 'Variants', value: 'variants' }];
+
         const app = this.context;
 
         return (
             <Query query={GET_PRODUCT_BY_ID} variables={{ ids: store.get('ids') }}>
                 {({ data, loading, error }) => {
+                    //TODO: input actual variant options
+
+
+
                     if (loading) { return <div>Loading…</div>; }
                     if (error) { return <div>{error.message}</div>; }
+                    const variantsArray = data.nodes[0].variants.edges;
+                    const variantSelectOptions = [];
+                    variantsArray.forEach(function(variant, index) {
+                        variantSelectOptions.push({label: variant.node.displayName, value: index})
+                    });
+
                     console.log(data);
                     return(
+
                         <Page
                             primaryAction={{
                                 content: 'Create A/B Test',
@@ -108,22 +120,22 @@ class CreateTestVariant extends React.Component {
                                             disabled={false}
                                             options={variantSelectOptions}
                                             onChange={this.handleVariantSelectChange}
-                                            value={this.state.variantSelected}/>
+                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.displayName}/>
                                         <Thumbnail
                                             source={
-                                                data.nodes[0].variants.edges[0].node.image
-                                                    ? data.nodes[0].variants.edges[0].node.image.originalSrc
-                                                    : ''
+                                                data.nodes[0].variants.edges[this.state.variantSelected].node.image
+                                                    ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.originalSrc
+                                                    : data.nodes[0].images.edges[0].node.originalSrc
                                             }
                                             alt={
-                                                data.nodes[0].variants.edges[0].node.image
-                                                    ? data.nodes[0].variants.edges[0].node.image.altText
-                                                    : ''
+                                                data.nodes[0].variants.edges[this.state.variantSelected].node.image
+                                                    ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.altText
+                                                    : data.nodes[0].images.edges[0].node.altText
                                             }
                                         />
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes[0].title}
+                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.displayName}
                                             onChange={this.handleChange('email')}
                                             label="Product Name"
                                             type="text"
@@ -131,17 +143,7 @@ class CreateTestVariant extends React.Component {
 
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes.title}
-                                            placeholder={data.nodes.title}
-                                            onChange={this.handleChange('email')}
-                                            label="Description"
-                                            type="text"
-                                        />
-
-                                        <TextField
-                                            readOnly={false}
-                                            value={data.nodes.title}
-                                            placeholder={data.nodes.title}
+                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.price}
                                             onChange={this.handleChange('email')}
                                             label="Original Price"
                                             type="text"
@@ -149,8 +151,7 @@ class CreateTestVariant extends React.Component {
 
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes.title}
-                                            placeholder={data.nodes.title}
+                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.compareAtPrice}
                                             onChange={this.handleChange('email')}
                                             label="Discounted Price"
                                             type="text"
@@ -188,6 +189,7 @@ class CreateTestVariant extends React.Component {
 
     handleVariantSelectChange = newValue => {
         this.setState({variantSelected: newValue});
+        console.log(this.state.variantSelected);
     };
 
     handleProductSubmit = () => {
