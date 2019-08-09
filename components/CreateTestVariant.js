@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { Button, Card, Checkbox, EmptyState, Form, FormLayout, Heading, Layout, Page, ResourceList, Select, Stack, Subheading, TextField, Thumbnail } from '@shopify/polaris';
+import { Button, Caption, Card, Checkbox, DropZone, EmptyState, Form, FormLayout, Heading, Layout, Page, ResourceList, Select, Stack, Subheading, TextField, Thumbnail } from '@shopify/polaris';
 import {Context} from "@shopify/app-bridge-react";
 import {Redirect} from "@shopify/app-bridge/actions";
 import store from "store-js";
@@ -47,8 +47,9 @@ const GET_PRODUCT_BY_ID = gql`
 class CreateTestVariant extends React.Component {
     static contextType = Context;
     state = {
+        files: [],
         productSelected: 'product',
-        variantSelected: 3,
+        variantSelected: 0,
         productTitle: '',
         productDescription: '',
         variantTitle: '',
@@ -60,6 +61,36 @@ class CreateTestVariant extends React.Component {
         const productOrVariantSelectOptions = [{ label: 'Product', value: 'product' }, { label: 'Variants', value: 'variants' }];
         const app = this.context;
 
+        const {files} = this.state;
+        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        console.log(this.state.files);
+        if(this.state.files.length != 0){
+            console.log(window.URL.createObjectURL(this.state.files[0]));
+        }
+
+        const fileUpload = !files.length && <DropZone.FileUpload />;
+        const uploadedFiles = files.length > 0 && (
+
+            <Stack vertical>
+                {files.map((file, index) => (
+                    <Stack alignment="center" key={index}>
+                        <Thumbnail
+                            size="large"
+                            alt={file.name}
+                            source={
+                                validImageTypes.indexOf(file.type) > 0
+                                    ? window.URL.createObjectURL(file)
+                                    : 'https://cdn.shopify.com/s/files/1/0757/9955/files/New_Post.png?12678548500147524304'
+                            }
+                        />
+                        <div>
+                            {file.name} <Caption>{file.size} bytes</Caption>
+                        </div>
+                    </Stack>
+                ))}
+            </Stack>
+        );
+
         return (
             <Query query={GET_PRODUCT_BY_ID} variables={{ ids: store.get('ids') }}>
                 {({ data, loading, error }) => {
@@ -70,7 +101,6 @@ class CreateTestVariant extends React.Component {
                     variantsArray.forEach(function(variant, index) {
                         variantSelectOptions.push({label: variant.node.displayName, value: index})
                     });
-
                     console.log(data);
                     return(
                         <Page
@@ -83,13 +113,15 @@ class CreateTestVariant extends React.Component {
                                     label="Create test for:"
                                     disabled={false}
                                     options={productOrVariantSelectOptions}
-                                    onChange={this.handleProductOrVariantSelectChange}
+                                    onChange={this.handleProductOrVariantSelectChange.bind(this, data)}
                                     value={this.state.productSelected}/>
 
                             {this.state.productSelected === 'product' ? (
                                 <Form onSubmit={this.handleProductSubmit}>
                                     <FormLayout>
+                                        <Stack>
                                         <Thumbnail
+                                            size="large"
                                             source={
                                                 data.nodes[0].images.edges[0]
                                                     ? data.nodes[0].images.edges[0].node.originalSrc
@@ -101,10 +133,18 @@ class CreateTestVariant extends React.Component {
                                                     : ''
                                             }
                                         />
+
+                                        <DropZone
+                                            onDrop={(files, acceptedFiles, rejectedFiles) => {
+                                                this.setState({files: [...this.state.files, ...acceptedFiles]});
+                                            }}>
+                                            {uploadedFiles}
+                                            {fileUpload}
+                                        </DropZone>
+                                        </Stack>
                                         <TextField
                                             readOnly={false}
                                             value={this.state.productTitle}
-                                            //value={data.nodes[0].title}
                                             onChange={this.handleTextChange}
                                             label="Product Name"
                                             type="text"
@@ -122,7 +162,10 @@ class CreateTestVariant extends React.Component {
                                             value={this.state.variantSelected}
                                             onChange={this.handleVariantSelectChange.bind(this, variantsArray)}
                                             />
+                                            <Stack>
+
                                         <Thumbnail
+                                            size="large"
                                             source={
                                                 data.nodes[0].variants.edges[this.state.variantSelected].node.image
                                                     ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.originalSrc
@@ -134,6 +177,16 @@ class CreateTestVariant extends React.Component {
                                                     : data.nodes[0].images.edges[0].node.altText
                                             }
                                         />
+
+                                        <DropZone
+                                            onDrop={(files, acceptedFiles, rejectedFiles) => {
+                                            this.setState({files: [...this.state.files, ...acceptedFiles]});
+                                        }}>
+                                            {uploadedFiles}
+                                            {fileUpload}
+                                        </DropZone>
+
+                                            </Stack>
                                         <TextField
                                             readOnly={false}
                                             value={this.state.variantTitle}
@@ -184,8 +237,13 @@ class CreateTestVariant extends React.Component {
         this.setState({ value });
     };
 
-    handleProductOrVariantSelectChange = newValue => {
-        this.setState({ productSelected: newValue });
+    handleProductOrVariantSelectChange = (data, newValue) => {
+        this.setState({
+            productTitle: data.nodes[0].title,
+            productSelected: newValue,
+            variantTitle: data.nodes[0].variants.edges[0].node.displayName,
+            variantPrice: data.nodes[0].variants.edges[0].node.price,
+            variantDiscount: data.nodes[0].variants.edges[0].node.compareAtPrice});
     };
 
     handleVariantSelectChange = (variantsArray, newValue) => {
