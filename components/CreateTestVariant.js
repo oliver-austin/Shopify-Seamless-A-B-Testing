@@ -48,21 +48,21 @@ class CreateTestVariant extends React.Component {
     static contextType = Context;
     state = {
         productSelected: 'product',
-        variantSelected: 0
+        variantSelected: 3,
+        productTitle: '',
+        productDescription: '',
+        variantTitle: '',
+        variantPrice: '',
+        variantDiscount: ''
     };
 
     render() {
         const productOrVariantSelectOptions = [{ label: 'Product', value: 'product' }, { label: 'Variants', value: 'variants' }];
-
         const app = this.context;
 
         return (
             <Query query={GET_PRODUCT_BY_ID} variables={{ ids: store.get('ids') }}>
                 {({ data, loading, error }) => {
-                    //TODO: input actual variant options
-
-
-
                     if (loading) { return <div>Loading…</div>; }
                     if (error) { return <div>{error.message}</div>; }
                     const variantsArray = data.nodes[0].variants.edges;
@@ -73,7 +73,6 @@ class CreateTestVariant extends React.Component {
 
                     console.log(data);
                     return(
-
                         <Page
                             primaryAction={{
                                 content: 'Create A/B Test',
@@ -104,8 +103,9 @@ class CreateTestVariant extends React.Component {
                                         />
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes[0].title}
-                                            onChange={this.handleChange('email')}
+                                            value={this.state.productTitle}
+                                            //value={data.nodes[0].title}
+                                            onChange={this.handleTextChange}
                                             label="Product Name"
                                             type="text"
                                         />
@@ -119,8 +119,9 @@ class CreateTestVariant extends React.Component {
                                             label="Select product variant to create test for:"
                                             disabled={false}
                                             options={variantSelectOptions}
-                                            onChange={this.handleVariantSelectChange}
-                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.displayName}/>
+                                            value={this.state.variantSelected}
+                                            onChange={this.handleVariantSelectChange.bind(this, variantsArray)}
+                                            />
                                         <Thumbnail
                                             source={
                                                 data.nodes[0].variants.edges[this.state.variantSelected].node.image
@@ -135,24 +136,24 @@ class CreateTestVariant extends React.Component {
                                         />
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.displayName}
-                                            onChange={this.handleChange('email')}
+                                            value={this.state.variantTitle}
+                                            onChange={this.handleTextChange}
                                             label="Product Name"
                                             type="text"
                                         />
 
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.price}
-                                            onChange={this.handleChange('email')}
+                                            value={this.state.variantPrice}
+                                            onChange={this.handleTextChange}
                                             label="Original Price"
                                             type="text"
                                         />
 
                                         <TextField
                                             readOnly={false}
-                                            value={data.nodes[0].variants.edges[this.state.variantSelected].node.compareAtPrice}
-                                            onChange={this.handleChange('email')}
+                                            value={this.state.variantDiscount}
+                                            onChange={this.handleTextChange}
                                             label="Discounted Price"
                                             type="text"
                                         />
@@ -179,17 +180,21 @@ class CreateTestVariant extends React.Component {
         return (price - discounter).toFixed(2);
     };
 
-    handleChange = (field) => {
-        return (value) => this.setState({[field]: value});
+    handleTextChange = (value) => {
+        this.setState({ value });
     };
 
     handleProductOrVariantSelectChange = newValue => {
         this.setState({ productSelected: newValue });
     };
 
-    handleVariantSelectChange = newValue => {
-        this.setState({variantSelected: newValue});
-        console.log(this.state.variantSelected);
+    handleVariantSelectChange = (variantsArray, newValue) => {
+        newValue = parseInt(newValue, 10);
+        this.setState({
+            variantSelected: newValue,
+            variantTitle: variantsArray[newValue].node.displayName,
+            variantPrice: variantsArray[newValue].node.price,
+            variantDiscount: variantsArray[newValue].node.compareAtPrice });
     };
 
     handleProductSubmit = () => {
