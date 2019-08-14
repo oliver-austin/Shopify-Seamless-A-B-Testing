@@ -1,8 +1,10 @@
-node_modules
-.next
-.env
-.idea
-.elasticbeanstalk
-.ebextensions
+*.env
+*.log
+*.idea
 npm-debug.log
 .prettierrc
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
