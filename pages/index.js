@@ -28,7 +28,7 @@ class Index extends React.Component {
     return (
       <Page
         primaryAction={{
-          content: 'Select products',
+          content: 'Select product to test',
           onAction: () => this.setState({ resourcePickerOpen: true }),
         }}
       >
