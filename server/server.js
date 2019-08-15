@@ -21,7 +21,7 @@ app.prepare().then(() => {
   const server = new Koa();
   server.use(session(server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-
+  require('./routes')(server);
   server.use(
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
