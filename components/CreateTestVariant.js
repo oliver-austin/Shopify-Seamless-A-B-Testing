@@ -4,10 +4,19 @@ import {Context} from "@shopify/app-bridge-react";
 import {Redirect} from "@shopify/app-bridge/actions";
 import store from "store-js";
 import {Query} from "react-apollo";
+import Product from "../data_classes/Product"
 import Modal from "@shopify/app-bridge-react/components/Modal";
 import ResourceListWithProducts from "./ResourceList";
+import $ from "jquery";
 
 //TODO: fetch all variants, not first 10
+const GET_SHOP_ID = gql`
+    query getShopID {
+            shop{
+                id
+            }
+    }
+`;
 const GET_PRODUCT_BY_ID = gql`
   query getProducts($ids: [ID!]!) {
     nodes(ids: $ids) {
@@ -52,6 +61,7 @@ class CreateTestVariant extends React.Component {
         variantSelected: 0,
         productTitle: '',
         productDescription: '',
+        productImage: '',
         variantTitle: '',
         variantPrice: '',
         variantDiscount: ''
@@ -93,7 +103,7 @@ class CreateTestVariant extends React.Component {
 
         return (
             <Query query={GET_PRODUCT_BY_ID} variables={{ ids: store.get('ids') }}>
-                {({ data, loading, error }) => {
+                {({data, loading, error}) => {
                     if (loading) { return <div>Loading…</div>; }
                     if (error) { return <div>{error.message}</div>; }
                     const variantsArray = data.nodes[0].variants.edges;
@@ -101,119 +111,139 @@ class CreateTestVariant extends React.Component {
                     variantsArray.forEach(function(variant, index) {
                         variantSelectOptions.push({label: variant.node.displayName, value: index})
                     });
-                    console.log(data);
-                    return(
-                        <Page
-                            primaryAction={{
-                                content: 'Create A/B Test',
-                                onAction: () => this.handleSave,
-                            }}
-                            >
-                                <Select
-                                    label="Create test for:"
-                                    disabled={false}
-                                    options={productOrVariantSelectOptions}
-                                    onChange={this.handleProductOrVariantSelectChange.bind(this, data)}
-                                    value={this.state.productSelected}/>
+                    return (
+                    <Query query={GET_SHOP_ID}>
+                        {({data: { shop }, loading, error}) => {
+                            if (loading) {
+                                return <div>Loading…</div>;
+                            }
+                            if (error) {
+                                return <div>{error.message}</div>;
+                            }
+                            console.log("ID", shop.id);
 
-                            {this.state.productSelected === 'product' ? (
-                                <Form onSubmit={this.handleProductSubmit}>
-                                    <FormLayout>
-                                        <Stack>
-                                        <Thumbnail
-                                            size="large"
-                                            source={
-                                                data.nodes[0].images.edges[0]
-                                                    ? data.nodes[0].images.edges[0].node.originalSrc
-                                                    : ''
-                                            }
-                                            alt={
-                                                data.nodes[0].images.edges[0]
-                                                    ? data.nodes[0].images.edges[0].node.altText
-                                                    : ''
-                                            }
-                                        />
+                            return (
+                                <Page
+                                    primaryAction={{
+                                        content: 'Create A/B Test',
+                                        onAction: () => this.handleSave,
+                                    }}
+                                >
+                                    <Select
+                                        label="Create test for:"
+                                        disabled={false}
+                                        options={productOrVariantSelectOptions}
+                                        onChange={this.handleProductOrVariantSelectChange.bind(this, data)}
+                                        value={this.state.productSelected}/>
 
-                                        <DropZone
-                                            onDrop={(files, acceptedFiles, rejectedFiles) => {
-                                                this.setState({files: [...this.state.files, ...acceptedFiles]});
-                                            }}>
-                                            {uploadedFiles}
-                                            {fileUpload}
-                                        </DropZone>
-                                        </Stack>
-                                        <TextField
-                                            readOnly={false}
-                                            value={this.state.productTitle}
-                                            onChange={this.handleTextChange}
-                                            label="Product Name"
-                                            type="text"
-                                        />
-                                    </FormLayout>
-                                </Form>
+                                    {this.state.productSelected === 'product' ? (
+                                        <Form onSubmit={this.handleProductSubmit(data, shop.id)}>
+                                            <FormLayout>
+                                                <Stack>
+                                                    <Thumbnail
+                                                        size="large"
+                                                        source={
+                                                            data.nodes[0].images.edges[0]
+                                                                ? data.nodes[0].images.edges[0].node.originalSrc
+                                                                : ''
+                                                        }
+                                                        alt={
+                                                            data.nodes[0].images.edges[0]
+                                                                ? data.nodes[0].images.edges[0].node.altText
+                                                                : ''
+                                                        }
+                                                    />
 
-                            ) : (
-                                <Form onSubmit={this.handleVariantSubmit}>
-                                    <FormLayout>
-                                        <Select
-                                            label="Select product variant to create test for:"
-                                            disabled={false}
-                                            options={variantSelectOptions}
-                                            value={this.state.variantSelected}
-                                            onChange={this.handleVariantSelectChange.bind(this, variantsArray)}
-                                            />
-                                            <Stack>
+                                                    <DropZone
+                                                        onDrop={(files, acceptedFiles, rejectedFiles) => {
+                                                            this.setState({files: [...this.state.files, ...acceptedFiles]});
+                                                        }}>
+                                                        {uploadedFiles}
+                                                        {fileUpload}
+                                                    </DropZone>
+                                                </Stack>
+                                                <TextField
+                                                    readOnly={false}
+                                                    value={this.state.productTitle}
+                                                    onChange={this.handleTextChange}
+                                                    label="Product Name"
+                                                    type="text"
+                                                />
+                                                <TextField
+                                                    readOnly={false}
+                                                    value={this.state.productDescription}
+                                                    onChange={this.handleTextChange}
+                                                    label="Product Description"
+                                                    type="text"
+                                                />
+                                            </FormLayout>
+                                        </Form>
 
-                                        <Thumbnail
-                                            size="large"
-                                            source={
-                                                data.nodes[0].variants.edges[this.state.variantSelected].node.image
-                                                    ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.originalSrc
-                                                    : data.nodes[0].images.edges[0].node.originalSrc
-                                            }
-                                            alt={
-                                                data.nodes[0].variants.edges[this.state.variantSelected].node.image
-                                                    ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.altText
-                                                    : data.nodes[0].images.edges[0].node.altText
-                                            }
-                                        />
+                                    ) : (
+                                        <Form onSubmit={this.handleVariantSubmit(data, shop.id)}>
+                                            <FormLayout>
+                                                <Select
+                                                    label="Select product variant to create test for:"
+                                                    disabled={false}
+                                                    options={variantSelectOptions}
+                                                    value={this.state.variantSelected}
+                                                    onChange={this.handleVariantSelectChange.bind(this, variantsArray)}
+                                                />
+                                                <Stack>
 
-                                        <DropZone
-                                            onDrop={(files, acceptedFiles, rejectedFiles) => {
-                                            this.setState({files: [...this.state.files, ...acceptedFiles]});
-                                        }}>
-                                            {uploadedFiles}
-                                            {fileUpload}
-                                        </DropZone>
+                                                    <Thumbnail
+                                                        size="large"
+                                                        source={
+                                                            data.nodes[0].variants.edges[this.state.variantSelected].node.image
+                                                                ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.originalSrc
+                                                                : data.nodes[0].images.edges[0].node.originalSrc
+                                                        }
+                                                        alt={
+                                                            data.nodes[0].variants.edges[this.state.variantSelected].node.image
+                                                                ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.altText
+                                                                : data.nodes[0].images.edges[0].node.altText
+                                                        }
+                                                    />
 
-                                            </Stack>
-                                        <TextField
-                                            readOnly={false}
-                                            value={this.state.variantTitle}
-                                            onChange={this.handleTextChange}
-                                            label="Product Name"
-                                            type="text"
-                                        />
+                                                    <DropZone
+                                                        onDrop={(files, acceptedFiles, rejectedFiles) => {
+                                                            this.setState({files: [...this.state.files, ...acceptedFiles]});
+                                                        }}>
+                                                        {uploadedFiles}
+                                                        {fileUpload}
+                                                    </DropZone>
 
-                                        <TextField
-                                            readOnly={false}
-                                            value={this.state.variantPrice}
-                                            onChange={this.handleTextChange}
-                                            label="Original Price"
-                                            type="text"
-                                        />
+                                                </Stack>
+                                                <TextField
+                                                    readOnly={false}
+                                                    value={this.state.variantTitle}
+                                                    onChange={this.handleTextChange}
+                                                    label="Product Name"
+                                                    type="text"
+                                                />
 
-                                        <TextField
-                                            readOnly={false}
-                                            value={this.state.variantDiscount}
-                                            onChange={this.handleTextChange}
-                                            label="Discounted Price"
-                                            type="text"
-                                        />
-                                    </FormLayout>
-                                </Form>
-                                )}
-                        </Page>
+                                                <TextField
+                                                    readOnly={false}
+                                                    value={this.state.variantPrice}
+                                                    onChange={this.handleTextChange}
+                                                    label="Original Price"
+                                                    type="text"
+                                                />
+
+                                                <TextField
+                                                    readOnly={false}
+                                                    value={this.state.variantDiscount}
+                                                    onChange={this.handleTextChange}
+                                                    label="Discounted Price"
+                                                    type="text"
+                                                />
+                                            </FormLayout>
+                                        </Form>
+                                    )}
+                                </Page>
+                            )
+                        }}
+                    </Query>
                     )
                 }}
                     </Query>
@@ -240,6 +270,7 @@ class CreateTestVariant extends React.Component {
     handleProductOrVariantSelectChange = (data, newValue) => {
         this.setState({
             productTitle: data.nodes[0].title,
+            productDescription: data.nodes[0].description,
             productSelected: newValue,
             variantTitle: data.nodes[0].variants.edges[0].node.displayName,
             variantPrice: data.nodes[0].variants.edges[0].node.price,
@@ -255,12 +286,33 @@ class CreateTestVariant extends React.Component {
             variantDiscount: variantsArray[newValue].node.compareAtPrice });
     };
 
-    handleProductSubmit = () => {
-
+    handleProductSubmit = (data, shopID) => {
+        //data param is retrieved from gql, "old data", new data is stored in this.state
+        //send all relevant fields form old and new data with request
+        var product = new Product
+            (data.nodes[0].id, shopID, data.nodes[0].title,
+            data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, this.state.productTitle,
+            this.state.productImage, this.state.productDescription, 0, 0, 0);
+        $.ajax({
+            type: "POST",
+            url: "./create-product-test",
+            data: JSON.stringify(product),
+            success: success,
+            dataType: 'json'
+        });
+        const success = () => {
+            console.log("Product test submission successful");
+        };
     };
 
-    handleVariantSubmit = () => {
-
+    handleVariantSubmit = (data, shopID) => {
+        /*$.ajax({
+            type: "POST",
+            url: "./create-variant-test",
+            data: data,
+            success: success,
+            dataType: JSON
+        });*/
     };
 
     handleSave = () => {
