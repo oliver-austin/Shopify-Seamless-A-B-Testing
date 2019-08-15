@@ -1,4 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
+const Product = require("../data_classes/Product");
+const Variant = require("../data_classes/Variant");
 
 class SQLite {
     constructor() {
@@ -63,12 +65,12 @@ class SQLite {
         //test passed
         updateOriginalProductSales(newSales, productID) {
             let newDailySalesAverage = null;
-            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalProductDaysListed, ORIGINAL_TOTAL_SALES originalProductTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
+            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalDaysListed, ORIGINAL_TOTAL_SALES originalTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
                 if (err) {
                     throw err;
                 }
-                const newDaysListed = row.originalProductDaysListed + 1;
-                const newTotalSales = row.originalProductTotalSales + newSales;
+                const newDaysListed = row.originalDaysListed + 1;
+                const newTotalSales = row.originalTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
 
                 this.db.run(`UPDATE products SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
@@ -87,12 +89,12 @@ class SQLite {
         // test passed
         updateTestProductSales(newSales, productID){
             let newDailySalesAverage = null;
-            this.db.get('SELECT TEST_DAYS_LISTED testProductDaysListed, TEST_TOTAL_SALES testProductTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
+            this.db.get('SELECT TEST_DAYS_LISTED testDaysListed, TEST_TOTAL_SALES testTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
                 if (err) {
                     throw err;
                 }
-                const newDaysListed = row.testProductDaysListed + 1;
-                const newTotalSales = row.testProductTotalSales + newSales;
+                const newDaysListed = row.testDaysListed + 1;
+                const newTotalSales = row.testTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
 
                 this.db.run(`UPDATE products SET TEST_DAYS_LISTED = ?, TEST_TOTAL_SALES = ?,
@@ -110,12 +112,12 @@ class SQLite {
         //test passed
         updateOriginalVariantSales(newSales, variantID){
             let newDailySalesAverage = null;
-            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalVariantDaysListed, ORIGINAL_TOTAL_SALES originalVariantTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
+            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalDaysListed, ORIGINAL_TOTAL_SALES originalTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
                 if (err) {
                     throw err;
                 }
-                const newDaysListed = row.originalVariantDaysListed + 1;
-                const newTotalSales = row.originalVariantTotalSales + newSales;
+                const newDaysListed = row.originalDaysListed + 1;
+                const newTotalSales = row.originalTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
                 this.db.run(`UPDATE variants SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
                             ORIGINAL_DAILY_SALES_AVERAGE = ? WHERE VARIANT_ID = ?`, [newDaysListed, newTotalSales, newDailySalesAverage, variantID], (err) => {
@@ -130,12 +132,12 @@ class SQLite {
         // test passed
         updateTestVariantSales(newSales, variantID){
             let newDailySalesAverage = null;
-            this.db.get('SELECT TEST_DAYS_LISTED testVariantDaysListed, TEST_TOTAL_SALES testVariantTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
+            this.db.get('SELECT TEST_DAYS_LISTED testDaysListed, TEST_TOTAL_SALES testTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
                 if (err) {
                     throw err;
                 }
-                const newDaysListed = row.testVariantDaysListed + 1;
-                const newTotalSales = row.testVariantTotalSales + newSales;
+                const newDaysListed = row.testDaysListed + 1;
+                const newTotalSales = row.testTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
                 this.db.run(`UPDATE variants SET TEST_DAYS_LISTED = ?, TEST_TOTAL_SALES = ?,
                             TEST_DAILY_SALES_AVERAGE = ? WHERE VARIANT_ID = ?`, [newDaysListed, newTotalSales, newDailySalesAverage, variantID], (err) => {
@@ -149,40 +151,50 @@ class SQLite {
 
         //test passed
           insertProducts(obj) {
-              this.db.run(`INSERT INTO products (PRODUCT_ID, SHOP_ID, ORIGINAL_TITLE, ORIGINAL_IMAGE, ORIGINAL_DESCRIPTION,
+              if(!(obj instanceof Product)){
+                  return console.error("ERROR: Passed object is not a Product instance");
+              }
+              else{
+                  this.db.run(`INSERT INTO products (PRODUCT_ID, SHOP_ID, ORIGINAL_TITLE, ORIGINAL_IMAGE, ORIGINAL_DESCRIPTION,
                         ORIGINAL_DAILY_SALES_AVERAGE, ORIGINAL_DAYS_LISTED, ORIGINAL_TOTAL_SALES, TEST_TITLE, TEST_IMAGE,
                         TEST_DESCRIPTION, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [obj.productID, obj.shopID, obj.originalTitle,
-                      obj.originalProductImage, obj.originalProductDescription, obj.originalProductDailySalesAverage,
-                      obj.originalProductDaysListed, obj.originalTotalSales, obj.testTitle, obj.testProductImage,
-                      obj.testDescription, obj.testProductDailySalesAverage, obj.testProductDaysListed, obj.testProductTotalSales],
-                  function (err) {
-                      if (err) {
-                          return console.log(err.message);
-                      }
-                      // get the last insert id
-                      console.log(`A row has been inserted`);
-                  });
-              this.db.close();
+                          obj.originalImage, obj.originalDescription, obj.originalDailySalesAverage,
+                          obj.originalDaysListed, obj.originalTotalSales, obj.testTitle, obj.testImage,
+                          obj.testDescription, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales],
+                      function (err) {
+                          if (err) {
+                              return console.log(err.message);
+                          }
+                          // get the last insert id
+                          console.log(`A row has been inserted`);
+                      });
+                  this.db.close();
+              }
           }
 
     //test passed
     insertVariants(obj) {
-        this.db.run(`INSERT INTO variants (VARIANT_ID, PRODUCT_ID, SHOP_ID, ORIGINAL_DISPLAY_NAME, ORIGINAL_IMAGE, ORIGINAL_PRICE, ORIGINAL_DISCOUNT,
+        if(!(obj instanceof Variant)){
+            return console.error("ERROR: Passed object is not a Variant instance");
+        }
+        else{
+            this.db.run(`INSERT INTO variants (VARIANT_ID, PRODUCT_ID, SHOP_ID, ORIGINAL_DISPLAY_NAME, ORIGINAL_IMAGE, ORIGINAL_PRICE, ORIGINAL_DISCOUNT,
                         ORIGINAL_DAILY_SALES_AVERAGE, ORIGINAL_DAYS_LISTED, ORIGINAL_TOTAL_SALES, TEST_DISPLAY_NAME, TEST_IMAGE,
                         TEST_PRICE, TEST_DISCOUNT, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [obj.variantID, obj.productID, obj.shopID, obj.originalDisplayName,
-                obj.originalVariantImage, obj.originalPrice, obj.originalDiscount, obj.originalVariantDailySalesAverage,
-                obj.originalVariantDaysListed, obj.originalVariantTotalSales, obj.testDisplayName, obj.testVariantImage,
-                obj.testPrice, obj.testDiscount, obj.testVariantDailySalesAverage, obj.testVariantDaysListed, obj.testVariantTotalSales],
-            function (err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-                // get the last insert id
-                console.log(`A row has been inserted`);
-            });
-        this.db.close();
+                    obj.originalImage, obj.originalPrice, obj.originalDiscount, obj.originalDailySalesAverage,
+                    obj.originalDaysListed, obj.originalTotalSales, obj.testDisplayName, obj.testImage,
+                    obj.testPrice, obj.testDiscount, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales],
+                function (err) {
+                    if (err) {
+                        return console.log(err.message);
+                    }
+                    // get the last insert id
+                    console.log(`A row has been inserted`);
+                });
+            this.db.close();
+        }
     }
  }
  module.exports = SQLite;

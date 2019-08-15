@@ -1,39 +1,8 @@
 const SQLite = require("./sqlite");
+const Product = require("../data_classes/Product");
+const Variant = require("../data_classes/Variant");
+
 
 var DB = new SQLite();
-var productObject = {
-    productID: "1",
-    shopID: "1",
-    originalTitle: "original title",
-    originalProductImage: "./1200px-SNice.svg.png",
-    originalProductDescription: "original description",
-    originalProductDailySalesAverage: 2.50,
-    originalProductDaysListed: 10,
-    originalProductTotalSales: 25,
-    testTitle: "test title",
-    testProductImage: "./1200px-SNice.svg.png",
-    testDescription: "test description",
-    testProductDailySalesAverage: 3,
-    testProductDaysListed: 10,
-    testProductTotalSales: 30,
-};
-
-var variantObject = {
-    variantID: "1",
-    productID: "1",
-    shopID: "1",
-    originalDisplayName: "original title",
-    originalVariantImage: "./1200px-SNice.svg.png",
-    originalPrice: 20,
-    originalDiscount: 15,
-    originalVariantDailySalesAverage: 2.50,
-    originalVariantDaysListed: 10,
-    originalVariantTotalSales: 25,
-    testDisplayName: "test title",
-    testVariantImage: "./1200px-SNice.svg.png",
-    testPrice: 18,
-    testDiscount: 14,
-    testVariantDailySalesAverage: 3,
-    testVariantDaysListed: 10,
-    testVariantTotalSales: 30,
-};
+var product = new Product("1", "1", "test", "testImage", "testDescription", 2.5, 10, 25, "test", "test", "test", 3, 10, 30);
+var variant = new Variant("1", "1", "1", "test", "test", 20, 18, 1.2, 10, 12, "test", "test", 15, 13, 3, 10, 30);
