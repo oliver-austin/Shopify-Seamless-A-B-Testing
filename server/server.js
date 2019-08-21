@@ -10,7 +10,7 @@ dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
 const { ApiVersion } = require('@shopify/koa-shopify-graphql-proxy');
 
-const port = parseInt(process.env.PORT, 10) || 8081;
+const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -21,7 +21,7 @@ app.prepare().then(() => {
   const server = new Koa();
   server.use(session(server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-  require('./routes')(server);
+  //require('./routes')(server);
   server.use(
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
