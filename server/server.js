@@ -6,6 +6,7 @@ const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
 const { verifyRequest } = require('@shopify/koa-shopify-auth');
 const session = require('koa-session');
+const schedule = require('node-schedule');
 
 dotenv.config();
 const { default: graphQLProxy } = require('@shopify/koa-shopify-graphql-proxy');
@@ -46,6 +47,11 @@ app.prepare().then(() => {
     ctx.respond = false;
     ctx.res.statusCode = 200;
 
+  });
+
+  schedule.scheduleJob('0 * * * * *', function() {
+    //TODO: Call testDailyTasks functions here
+    console.log("ONE MINUTE ELAPSED");
   });
 
   server.listen(port, () => {

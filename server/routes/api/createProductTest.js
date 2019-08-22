@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 const BodyParser = require('koa-body');
 const bodyParser = BodyParser();
 const Product = require('product');

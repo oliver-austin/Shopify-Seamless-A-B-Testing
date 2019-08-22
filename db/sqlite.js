@@ -20,9 +20,7 @@ class SQLite {
                 if (err) {
                     throw err;
                 }
-                rows.forEach((row) => {
-                    console.log(row);
-                });
+                return rows;
             });
         }
 
@@ -32,9 +30,7 @@ class SQLite {
                 if (err) {
                     throw err;
                 }
-                rows.forEach((row) => {
-                    console.log(row);
-                });
+                return rows
             });
         }
 
@@ -196,5 +192,7 @@ class SQLite {
             this.db.close();
         }
     }
+
+    //TODO: update flag field
  }
  module.exports = SQLite;
