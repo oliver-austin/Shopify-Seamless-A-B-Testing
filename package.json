@@ -29,6 +29,7 @@
     "@shopify/polaris": "^3.10.0",
     "@zeit/next-css": "^1.0.1",
     "apollo-boost": "^0.3.1",
+    "db": "file:db",
     "dotenv": "^6.2.0",
     "graphql": "^14.1.1",
     "graphql-tag": "^2.10.1",
@@ -38,14 +39,19 @@
     "js-cookie": "^2.2.1",
     "js-cookies": "^1.0.4",
     "koa": "^2.7.0",
+    "koa-body": "^4.1.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
     "koa-session": "^5.10.1",
     "next": "^8.0.3",
+    "product": "file:data_classes/product",
     "react": "^16.8.4",
     "react-apollo": "^2.5.2",
     "react-dom": "^16.8.4",
     "react-router": "^5.0.1",
     "sqlite3": "^4.0.9",
-    "store-js": "^2.0.4"
+    "store-js": "^2.0.4",
+    "variant": "file:data_classes/variant"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

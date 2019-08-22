@@ -143,10 +143,10 @@ Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ "./data_classes/Product.js":
-/*!*********************************!*\
-  !*** ./data_classes/Product.js ***!
-  \*********************************/
+/***/ "./data_classes/product/Product.js":
+/*!*****************************************!*\
+  !*** ./data_classes/product/Product.js ***!
+  \*****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -297,6 +297,190 @@ function () {
 }();
 
 module.exports = Product;
+
+/***/ }),
+
+/***/ "./data_classes/variant/Variant.js":
+/*!*****************************************!*\
+  !*** ./data_classes/variant/Variant.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime-corejs2/helpers/interopRequireDefault */ "./node_modules/@babel/runtime-corejs2/helpers/interopRequireDefault.js");
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/classCallCheck */ "./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/createClass */ "./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js"));
+
+var Variant =
+/*#__PURE__*/
+function () {
+  function Variant(variantID, productID, shopID, originalDisplayName, originalImage, originalPrice, originalDiscount, originalDailySalesAverage, originalDaysListed, originalTotalSales, testDisplayName, testImage, testPrice, testDiscount, testDailySalesAverage, testDaysListed, testTotalSales) {
+    (0, _classCallCheck2.default)(this, Variant);
+    this._variantID = variantID;
+    this._productID = productID;
+    this._shopID = shopID;
+    this._originalDisplayName = originalDisplayName;
+    this._originalImage = originalImage;
+    this._originalPrice = originalPrice;
+    this._originalDiscount = originalDiscount;
+    this._originalDailySalesAverage = originalDailySalesAverage;
+    this._originalDaysListed = originalDaysListed;
+    this._originalTotalSales = originalTotalSales;
+    this._testDisplayName = testDisplayName;
+    this._testImage = testImage;
+    this._testPrice = testPrice;
+    this._testDiscount = testDiscount;
+    this._testDailySalesAverage = testDailySalesAverage;
+    this._testDaysListed = testDaysListed;
+    this._testTotalSales = testTotalSales;
+  }
+
+  (0, _createClass2.default)(Variant, [{
+    key: "variantID",
+    get: function get() {
+      return this._variantID;
+    },
+    set: function set(value) {
+      this._variantID = value;
+    }
+  }, {
+    key: "productID",
+    get: function get() {
+      return this._productID;
+    },
+    set: function set(value) {
+      this._productID = value;
+    }
+  }, {
+    key: "shopID",
+    get: function get() {
+      return this._shopID;
+    },
+    set: function set(value) {
+      this._shopID = value;
+    }
+  }, {
+    key: "originalDisplayName",
+    get: function get() {
+      return this._originalDisplayName;
+    },
+    set: function set(value) {
+      this._originalDisplayName = value;
+    }
+  }, {
+    key: "originalImage",
+    get: function get() {
+      return this._originalImage;
+    },
+    set: function set(value) {
+      this._originalImage = value;
+    }
+  }, {
+    key: "originalPrice",
+    get: function get() {
+      return this._originalPrice;
+    },
+    set: function set(value) {
+      this._originalPrice = value;
+    }
+  }, {
+    key: "originalDiscount",
+    get: function get() {
+      return this._originalDiscount;
+    },
+    set: function set(value) {
+      this._originalDiscount = value;
+    }
+  }, {
+    key: "originalDailySalesAverage",
+    get: function get() {
+      return this._originalDailySalesAverage;
+    },
+    set: function set(value) {
+      this._originalDailySalesAverage = value;
+    }
+  }, {
+    key: "originalDaysListed",
+    get: function get() {
+      return this._originalDaysListed;
+    },
+    set: function set(value) {
+      this._originalDaysListed = value;
+    }
+  }, {
+    key: "originalTotalSales",
+    get: function get() {
+      return this._originalTotalSales;
+    },
+    set: function set(value) {
+      this._originalTotalSales = value;
+    }
+  }, {
+    key: "testDisplayName",
+    get: function get() {
+      return this._testDisplayName;
+    },
+    set: function set(value) {
+      this._testDisplayName = value;
+    }
+  }, {
+    key: "testImage",
+    get: function get() {
+      return this._testImage;
+    },
+    set: function set(value) {
+      this._testImage = value;
+    }
+  }, {
+    key: "testPrice",
+    get: function get() {
+      return this._testPrice;
+    },
+    set: function set(value) {
+      this._testPrice = value;
+    }
+  }, {
+    key: "testDiscount",
+    get: function get() {
+      return this._testDiscount;
+    },
+    set: function set(value) {
+      this._testDiscount = value;
+    }
+  }, {
+    key: "testDailySalesAverage",
+    get: function get() {
+      return this._testDailySalesAverage;
+    },
+    set: function set(value) {
+      this._testDailySalesAverage = value;
+    }
+  }, {
+    key: "testDaysListed",
+    get: function get() {
+      return this._testDaysListed;
+    },
+    set: function set(value) {
+      this._testDaysListed = value;
+    }
+  }, {
+    key: "testTotalSales",
+    get: function get() {
+      return this._testTotalSales;
+    },
+    set: function set(value) {
+      this._testTotalSales = value;
+    }
+  }]);
+  return Variant;
+}();
+
+module.exports = Variant;
 
 /***/ }),
 
@@ -76836,13 +77020,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! store-js */ "./node_modules/store-js/dist/store.legacy.js");
 /* harmony import */ var store_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(store_js__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var react_apollo__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! react-apollo */ "./node_modules/react-apollo/react-apollo.esm.js");
-/* harmony import */ var _data_classes_Product__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../data_classes/Product */ "./data_classes/Product.js");
-/* harmony import */ var _data_classes_Product__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_data_classes_Product__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @shopify/app-bridge-react/components/Modal */ "./node_modules/@shopify/app-bridge-react/components/Modal/index.js");
-/* harmony import */ var _shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var _components_ResourceList__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../components/ResourceList */ "./components/ResourceList.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _data_classes_product_Product__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../data_classes/product/Product */ "./data_classes/product/Product.js");
+/* harmony import */ var _data_classes_product_Product__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_data_classes_product_Product__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _data_classes_variant_Variant__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../data_classes/variant/Variant */ "./data_classes/variant/Variant.js");
+/* harmony import */ var _data_classes_variant_Variant__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(_data_classes_variant_Variant__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @shopify/app-bridge-react/components/Modal */ "./node_modules/@shopify/app-bridge-react/components/Modal/index.js");
+/* harmony import */ var _shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_shopify_app_bridge_react_components_Modal__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _components_ResourceList__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../components/ResourceList */ "./components/ResourceList.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_22__);
 
 
 
@@ -76875,6 +77061,7 @@ function _templateObject() {
 
   return data;
 }
+
 
 
 
@@ -76948,35 +77135,33 @@ function (_React$Component) {
       });
     });
 
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "handleProductSubmit", function (data, shopID) {
-      //data param is retrieved from gql, "old data", new data is stored in this.state
+    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "handleProductOrVariantSubmit", function (data, shopID) {
+      console.log("SUBMIT"); //data param is retrieved from gql, "old data", new data is stored in this.state
       //send all relevant fields form old and new data with request
-      var product = new _data_classes_Product__WEBPACK_IMPORTED_MODULE_18___default.a(data.nodes[0].id, shopID, data.nodes[0].title, data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, _this.state.productTitle, _this.state.productImage, _this.state.productDescription, 0, 0, 0);
-      console.log(product);
-      jquery__WEBPACK_IMPORTED_MODULE_21___default.a.ajax({
-        type: "POST",
-        url: "./create-product-test",
-        data: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(product),
-        success: success,
-        dataType: 'json'
-      });
 
-      var success = function success() {
-        console.log("Product test submission successful");
-      };
+      switch (_this.state.productSelected) {
+        case "product":
+          var product = new _data_classes_product_Product__WEBPACK_IMPORTED_MODULE_18___default.a(data.nodes[0].id, shopID, data.nodes[0].title, data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, _this.state.productTitle, _this.state.productImage, _this.state.productDescription, 0, 0, 0);
+          jquery__WEBPACK_IMPORTED_MODULE_22___default.a.ajax({
+            type: "POST",
+            url: "/create-product-test",
+            contentType: "application/json; charset=utf-8",
+            data: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(product),
+            dataType: 'text'
+          });
+          break;
+
+        case "variants":
+          var variant = new _data_classes_variant_Variant__WEBPACK_IMPORTED_MODULE_19___default.a(data.nodes[0].variants.edges[_this.state.variantSelected].node.id, data.nodes[0].id, shopID, data.nodes[0].variants.edges[_this.state.variantSelected].node.displayName, data.nodes[0].variants.edges[_this.state.variantSelected].node.image ? data.nodes[0].variants.edges[_this.state.variantSelected].node.image.originalSrc : data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].variants.edges[_this.state.variantSelected].node.price, data.nodes[0].variants.edges[_this.state.variantSelected].node.compareAtPrice, 0, 0, 0, _this.state.variantTitle, _this.state.variantImage, _this.state.variantPrice, _this.state.variantDiscount, 0, 0, 0);
+          jquery__WEBPACK_IMPORTED_MODULE_22___default.a.ajax({
+            type: "POST",
+            url: "/create-variant-test",
+            contentType: "application/json; charset=utf-8",
+            data: _babel_runtime_corejs2_core_js_json_stringify__WEBPACK_IMPORTED_MODULE_1___default()(variant),
+            dataType: 'json'
+          });
+      }
     });
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "handleVariantSubmit", function (data, shopID) {
-      /*$.ajax({
-          type: "POST",
-          url: "./create-variant-test",
-          data: data,
-          success: success,
-          dataType: JSON
-      });*/
-    });
-
-    Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_9__["default"])(Object(_babel_runtime_corejs2_helpers_esm_assertThisInitialized__WEBPACK_IMPORTED_MODULE_7__["default"])(_this), "handleSave", function () {});
 
     _this.state = {
       files: [],
@@ -76986,6 +77171,7 @@ function (_React$Component) {
       productDescription: '',
       productImage: '',
       variantTitle: '',
+      variantImage: '',
       variantPrice: '',
       variantDiscount: ''
     };
@@ -77072,7 +77258,7 @@ function (_React$Component) {
             primaryAction: {
               content: 'Create A/B Test',
               onAction: function onAction() {
-                return console.log("primary action");
+                return _this2.handleProductOrVariantSubmit(data, shop.id);
               }
             }
           }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Select"], {
@@ -77081,9 +77267,7 @@ function (_React$Component) {
             options: productOrVariantSelectOptions,
             onChange: _this2.handleProductOrVariantSelectChange.bind(_this2, data),
             value: _this2.state.productSelected
-          }), _this2.state.productSelected === 'product' ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Form"], {
-            onSubmit: _this2.handleProductSubmit(data, shop.id)
-          }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["FormLayout"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Stack"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Thumbnail"], {
+          }), _this2.state.productSelected === 'product' ? react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Form"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["FormLayout"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Stack"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Thumbnail"], {
             size: "large",
             source: data.nodes[0].images.edges[0] ? data.nodes[0].images.edges[0].node.originalSrc : '',
             alt: data.nodes[0].images.edges[0] ? data.nodes[0].images.edges[0].node.altText : ''
@@ -77105,9 +77289,7 @@ function (_React$Component) {
             onChange: _this2.handleTextChange,
             label: "Product Description",
             type: "text"
-          }))) : react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Form"], {
-            onSubmit: _this2.handleVariantSubmit(data, shop.id)
-          }, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["FormLayout"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Select"], {
+          }))) : react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Form"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["FormLayout"], null, react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Select"], {
             label: "Select product variant to create test for:",
             disabled: false,
             options: variantSelectOptions,
@@ -77141,9 +77323,7 @@ function (_React$Component) {
             onChange: _this2.handleTextChange,
             label: "Discounted Price",
             type: "text"
-          }), react__WEBPACK_IMPORTED_MODULE_11___default.a.createElement(_shopify_polaris__WEBPACK_IMPORTED_MODULE_13__["Button"], {
-            submit: true
-          }, "Submit"))));
+          }))));
         });
       });
     }
@@ -77158,7 +77338,7 @@ Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODUL
 
 /***/ }),
 
-/***/ 4:
+/***/ 2:
 /*!**************************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2Fcreate-test&absolutePagePath=C%3A%5CUsers%5COliver%5CShopify%5CSeamless%20AB%20Testing%5Cpages%5Ccreate-test.js ***!
   \**************************************************************************************************************************************************************/
@@ -77181,5 +77361,5 @@ module.exports = dll_42a7343b774002543678;
 
 /***/ })
 
-},[[4,"static/runtime/webpack.js"]]]));;
+},[[2,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=create-test.js.map
