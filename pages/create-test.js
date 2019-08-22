@@ -4,7 +4,8 @@ import {Context} from "@shopify/app-bridge-react";
 import {Redirect} from "@shopify/app-bridge/actions";
 import store from "store-js";
 import {Query} from "react-apollo";
-import Product from "../data_classes/Product"
+import Product from "../data_classes/product/Product"
+import Variant from "../data_classes/variant/Variant"
 import Modal from "@shopify/app-bridge-react/components/Modal";
 import ResourceListWithProducts from "../components/ResourceList";
 import $ from "jquery";
@@ -65,6 +66,7 @@ class CreateTestVariant extends React.Component {
             productDescription: '',
             productImage: '',
             variantTitle: '',
+            variantImage: '',
             variantPrice: '',
             variantDiscount: ''
         };
@@ -130,7 +132,7 @@ class CreateTestVariant extends React.Component {
                                     <Page
                                         primaryAction={{
                                             content: 'Create A/B Test',
-                                            onAction: () => console.log("primary action"),
+                                            onAction: () => this.handleProductOrVariantSubmit(data, shop.id),
                                         }}
                                     >
                                         <Select
@@ -141,7 +143,7 @@ class CreateTestVariant extends React.Component {
                                             value={this.state.productSelected}/>
 
                                         {this.state.productSelected === 'product' ? (
-                                            <Form onSubmit={this.handleProductSubmit(data, shop.id)}>
+                                            <Form>
                                                 <FormLayout>
                                                     <Stack>
                                                         <Thumbnail
@@ -184,7 +186,7 @@ class CreateTestVariant extends React.Component {
                                             </Form>
 
                                         ) : (
-                                            <Form onSubmit={this.handleVariantSubmit(data, shop.id)}>
+                                            <Form>
                                                 <FormLayout>
                                                     <Select
                                                         label="Select product variant to create test for:"
@@ -241,7 +243,6 @@ class CreateTestVariant extends React.Component {
                                                         label="Discounted Price"
                                                         type="text"
                                                     />
-                                                    <Button submit>Submit</Button>
                                                 </FormLayout>
                                             </Form>
                                         )}
@@ -291,39 +292,48 @@ class CreateTestVariant extends React.Component {
             variantDiscount: variantsArray[newValue].node.compareAtPrice });
     };
 
-    handleProductSubmit = (data, shopID) => {
+    handleProductOrVariantSubmit = (data, shopID) => {
+        console.log("SUBMIT");
         //data param is retrieved from gql, "old data", new data is stored in this.state
         //send all relevant fields form old and new data with request
-        var product = new Product
-        (data.nodes[0].id, shopID, data.nodes[0].title,
-            data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, this.state.productTitle,
-            this.state.productImage, this.state.productDescription, 0, 0, 0);
-        console.log(product);
-        $.ajax({
-            type: "POST",
-            url: "./create-product-test",
-            data: JSON.stringify(product),
-            success: success,
-            dataType: 'json'
-        });
-        const success = () => {
-            console.log("Product test submission successful");
-        };
+        switch(this.state.productSelected){
+            case "product":
+                const product = new Product
+                (data.nodes[0].id, shopID, data.nodes[0].title,
+                    data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, this.state.productTitle,
+                    this.state.productImage, this.state.productDescription, 0, 0, 0);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/create-product-test",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(product),
+                    dataType: 'text'
+                });
+                break;
+
+            case "variants":
+                const variant = new Variant
+                (data.nodes[0].variants.edges[this.state.variantSelected].node.id, data.nodes[0].id, shopID,
+                    data.nodes[0].variants.edges[this.state.variantSelected].node.displayName,
+                    (data.nodes[0].variants.edges[this.state.variantSelected].node.image
+                        ? data.nodes[0].variants.edges[this.state.variantSelected].node.image.originalSrc
+                        : data.nodes[0].images.edges[0].node.originalSrc),
+                    data.nodes[0].variants.edges[this.state.variantSelected].node.price,
+                    data.nodes[0].variants.edges[this.state.variantSelected].node.compareAtPrice,
+                    0, 0, 0, this.state.variantTitle, this.state.variantImage, this.state.variantPrice,
+                    this.state.variantDiscount, 0, 0, 0);
+
+                $.ajax({
+                    type: "POST",
+                    url: "/create-variant-test",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(variant),
+                    dataType: 'json'
+                });
+        }
+
     };
-
-    handleVariantSubmit = (data, shopID) => {
-        /*$.ajax({
-            type: "POST",
-            url: "./create-variant-test",
-            data: data,
-            success: success,
-            dataType: JSON
-        });*/
-    };
-
-    handleSave = () => {
-
-    }
 }
 
 export default CreateTestVariant;

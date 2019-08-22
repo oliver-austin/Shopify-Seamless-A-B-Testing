@@ -1,5 +1,6 @@
 require('isomorphic-fetch');
 const Koa = require('koa');
+const Router = require('koa-router');
 const next = require('next');
 const { default: createShopifyAuth } = require('@shopify/koa-shopify-auth');
 const dotenv = require('dotenv');
@@ -19,9 +20,12 @@ const { SHOPIFY_API_SECRET_KEY, SHOPIFY_API_KEY } = process.env;
 
 app.prepare().then(() => {
   const server = new Koa();
+  const router = new Router();
   server.use(session(server));
   server.keys = [SHOPIFY_API_SECRET_KEY];
-  //require('./routes')(server);
+  require('./routes')(router);
+  server.use(router.routes());
+  server.use(router.allowedMethods());
   server.use(
     createShopifyAuth({
       apiKey: SHOPIFY_API_KEY,
