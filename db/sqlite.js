@@ -1,4 +1,5 @@
 const sqlite3 = require('sqlite3').verbose();
+const Promise = require('bluebird');
 const Product = require("../data_classes/product/Product");
 const Variant = require("../data_classes/variant/Variant");
 
@@ -15,13 +16,18 @@ class SQLite {
         });
     }
         // test passed
-        selectProductsByShopID(shopID){
-            this.db.all(`SELECT * FROM products WHERE SHOP_ID = ?`, [shopID], (err, rows) => {
+        async selectProductsByShopID(shopID){
+            console.log("SQL select products by shopID called: ", shopID);
+            await this.db.all(`SELECT * FROM products WHERE SHOP_ID = ?`, [shopID], (err, rows) => {
                 if (err) {
-                    throw err;
+                    throw(err)
                 }
-                return rows;
+                else{
+                    console.log("rows:", rows);
+                    return rows;
+                }
             });
+
         }
 
         //test passed
@@ -92,6 +98,7 @@ class SQLite {
                 const newDaysListed = row.testDaysListed + 1;
                 const newTotalSales = row.testTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
+                //TODO: invert flag column here
 
                 this.db.run(`UPDATE products SET TEST_DAYS_LISTED = ?, TEST_TOTAL_SALES = ?,
                             TEST_DAILY_SALES_AVERAGE = ? WHERE PRODUCT_ID = ?`,
@@ -115,6 +122,7 @@ class SQLite {
                 const newDaysListed = row.originalDaysListed + 1;
                 const newTotalSales = row.originalTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
+                //TODO: invert flag column here
                 this.db.run(`UPDATE variants SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
                             ORIGINAL_DAILY_SALES_AVERAGE = ? WHERE VARIANT_ID = ?`, [newDaysListed, newTotalSales, newDailySalesAverage, variantID], (err) => {
                     if (err) {
@@ -145,6 +153,22 @@ class SQLite {
             });
         }
 
+        updateProductFlag(productID, oldFlag){
+            this.db.run(`UPDATE products SET ORIGINAL_FLAG = ? WHERE PRODUCT_ID = ?`, [(!oldFlag), productID], (err) => {
+                if (err) {
+                    throw err;
+                }
+            });
+        }
+
+        updateVariantFlag(variantID, oldFlag){
+            this.db.run(`UPDATE variants SET ORIGINAL_FLAG = ? WHERE VARIANT_ID = ?`, [(!oldFlag), variantID], (err) => {
+                if (err) {
+                    throw err;
+                }
+            });
+        }
+
         //test passed
           insertProducts(obj) {
               if(!(obj instanceof Product)){
@@ -153,11 +177,11 @@ class SQLite {
               else{
                   this.db.run(`INSERT INTO products (PRODUCT_ID, SHOP_ID, ORIGINAL_TITLE, ORIGINAL_IMAGE, ORIGINAL_DESCRIPTION,
                         ORIGINAL_DAILY_SALES_AVERAGE, ORIGINAL_DAYS_LISTED, ORIGINAL_TOTAL_SALES, TEST_TITLE, TEST_IMAGE,
-                        TEST_DESCRIPTION, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [obj.productID, obj.shopID, obj.originalTitle,
+                        TEST_DESCRIPTION, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES, ORIGINAL_FLAG)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [obj.productID, obj.shopID, obj.originalTitle,
                           obj.originalImage, obj.originalDescription, obj.originalDailySalesAverage,
                           obj.originalDaysListed, obj.originalTotalSales, obj.testTitle, obj.testImage,
-                          obj.testDescription, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales],
+                          obj.testDescription, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales, obj.originalFlag],
                       function (err) {
                           if (err) {
                               return console.log(err.message);
@@ -177,11 +201,11 @@ class SQLite {
         else{
             this.db.run(`INSERT INTO variants (VARIANT_ID, PRODUCT_ID, SHOP_ID, ORIGINAL_DISPLAY_NAME, ORIGINAL_IMAGE, ORIGINAL_PRICE, ORIGINAL_DISCOUNT,
                         ORIGINAL_DAILY_SALES_AVERAGE, ORIGINAL_DAYS_LISTED, ORIGINAL_TOTAL_SALES, TEST_DISPLAY_NAME, TEST_IMAGE,
-                        TEST_PRICE, TEST_DISCOUNT, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES)
+                        TEST_PRICE, TEST_DISCOUNT, TEST_DAILY_SALES_AVERAGE, TEST_DAYS_LISTED, TEST_TOTAL_SALES, ORIGINAL_FLAG)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, [obj.variantID, obj.productID, obj.shopID, obj.originalDisplayName,
                     obj.originalImage, obj.originalPrice, obj.originalDiscount, obj.originalDailySalesAverage,
                     obj.originalDaysListed, obj.originalTotalSales, obj.testDisplayName, obj.testImage,
-                    obj.testPrice, obj.testDiscount, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales],
+                    obj.testPrice, obj.testDiscount, obj.testDailySalesAverage, obj.testDaysListed, obj.testTotalSales, obj.originalFlag],
                 function (err) {
                     if (err) {
                         return console.log(err.message);
@@ -192,7 +216,5 @@ class SQLite {
             this.db.close();
         }
     }
-
-    //TODO: update flag field
  }
  module.exports = SQLite;

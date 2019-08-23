@@ -25,7 +25,8 @@ module.exports = async (router) => {
             body._testDiscount,
             body._testDailySalesAverage,
             body._testDaysListed,
-            body._testTotalSales
+            body._testTotalSales,
+            body._originalFlag
         );
         const sqlite = new SQLite();
         sqlite.insertVariants(variant);

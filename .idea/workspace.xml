@@ -2,34 +2,86 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46d0582b-d11b-4aa5-87c8-059c845a67a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/api/getVariantTestsByShop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/api/updateProductTest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/routes/api/updateVariantTest.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/testDailyTasks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/modules/testDailyTasksHelpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/build-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/build-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/server/static/development/pages/create-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/server/static/development/pages/create-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/pages-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/.next/server/pages-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/static/development/pages/create-test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/server/static/development/pages/create-test.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/static/chunks/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/chunks/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/static/chunks/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/chunks/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/development/pages/create-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/development/pages/create-test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/static/development/pages/create-test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/static/development/pages/create-test.js.map" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/static/runtime/webpack.js" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/runtime/webpack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.next/static/runtime/webpack.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/.next/static/runtime/webpack.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/16dc448bcf681f806a83.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/1a60ac2f1edff57f5500.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/22f0b0c1f1eca9aad5a6.hot-update.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/static/development/pages/create-test.js.16dc448bcf681f806a83.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/static/development/pages/create-test.js.16dc448bcf681f806a83.hot-update.js.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/static/development/pages/create-test.js.22f0b0c1f1eca9aad5a6.hot-update.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.next/static/webpack/static/development/pages/create-test.js.22f0b0c1f1eca9aad5a6.hot-update.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.next/static/webpack/cb0d29420358eb782a67.hot-update.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_classes/product/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/data_classes/product/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_classes/variant/Variant.js" beforeDir="false" afterPath="$PROJECT_DIR$/data_classes/variant/Variant.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/sqlite.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/sqlite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/testDB" beforeDir="false" afterPath="$PROJECT_DIR$/db/testDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/testDBClass.js" beforeDir="false" afterPath="$PROJECT_DIR$/db/testDBClass.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/autodll-webpack-plugin/development_instance_0_49b71ba011520ffe28f0c7de61d792fd/stats.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/autodll-webpack-plugin/development_instance_0_49b71ba011520ffe28f0c7de61d792fd/stats.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node_modules/.cache/autodll-webpack-plugin/package.json.hash" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.cache/autodll-webpack-plugin/package.json.hash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.core.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.core.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.core.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.core.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/browser/bluebird.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/any.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/any.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/assert.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/assert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/async.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/async.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/bind.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/bind.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/bluebird.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/bluebird.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/call_get.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/call_get.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/cancel.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/cancel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/catch_filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/catch_filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/context.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/context.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/debuggability.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/debuggability.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/direct_resolve.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/direct_resolve.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/each.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/each.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/errors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/es5.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/es5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/filter.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/filter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/finally.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/finally.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/generators.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/generators.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/join.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/join.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/method.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/method.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/nodeback.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/nodeback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/nodeify.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/nodeify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/promise.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/promise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/promise_array.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/promise_array.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/promisify.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/promisify.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/props.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/props.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/queue.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/queue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/race.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/race.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/reduce.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/reduce.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/schedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/settle.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/settle.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/some.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/some.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/synchronous_inspection.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/synchronous_inspection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/thenables.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/thenables.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/timers.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/timers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/using.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/using.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/js/release/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/bluebird/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/bluebird/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/db/sqlite.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/db/sqlite.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/db/testDB" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/db/testDB" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/product/Product.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/product/Product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/variant/Variant.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/variant/Variant.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/create-test.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/create-test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/api/createProductTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/api/createProductTest.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/routes/api/createVariantTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/api/createVariantTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/api/getVariantTestsByShop.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/api/updateProductTest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/api/updateVariantTest.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/testDailyTasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/testDailyTasks.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -48,44 +100,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="51" column="27" lean-forward="true" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/api/getVariantTestsByShop.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/api/updateProductTest.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/routes/api/updateVariantTest.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+            <state relative-caret-position="147">
+              <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -93,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/create-test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3670">
-              <caret line="95" column="36" lean-forward="true" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+            <state relative-caret-position="-3024">
+              <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -102,11 +118,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data_classes/product/Product.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1936">
+              <caret column="15" selection-start-column="15" selection-end-column="15" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/testDailyTasks.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="73" lean-forward="true" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+            <state relative-caret-position="115">
+              <caret line="24" column="40" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="40" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -115,10 +140,46 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/routes/api/createProductTest.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="33" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/testDBClass.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/sqlite.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+            <state relative-caret-position="136">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/sqlite3/lib/trace.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/modules/testDailyTasksHelpers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-68">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -154,6 +215,7 @@
       <find>consol</find>
       <find>handleProductOrVariantSubmit</find>
       <find>updateOriginalProductSales</find>
+      <find>fetch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,18 +250,23 @@
         <option value="$PROJECT_DIR$/db/package.json" />
         <option value="$PROJECT_DIR$/data_classes/variant/package.json" />
         <option value="$PROJECT_DIR$/data_classes/product/package.json" />
-        <option value="$PROJECT_DIR$/data_classes/variant/Variant.js" />
-        <option value="$PROJECT_DIR$/pages/create-test.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/server/routes/api/testDailyTasks.js" />
-        <option value="$PROJECT_DIR$/server/testDailyTasks.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/createProductTest.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/createVariantTest.js" />
-        <option value="$PROJECT_DIR$/db/sqlite.js" />
-        <option value="$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js" />
         <option value="$PROJECT_DIR$/server/routes/api/getVariantTestsByShop.js" />
         <option value="$PROJECT_DIR$/server/routes/api/updateProductTest.js" />
         <option value="$PROJECT_DIR$/server/routes/api/updateVariantTest.js" />
+        <option value="$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js" />
+        <option value="$PROJECT_DIR$/server/modules/getProductTestsByShop.js" />
+        <option value="$PROJECT_DIR$/server/modules/updateVariantTest.js" />
+        <option value="$PROJECT_DIR$/data_classes/product/Product.js" />
+        <option value="$PROJECT_DIR$/data_classes/variant/Variant.js" />
+        <option value="$PROJECT_DIR$/pages/create-test.js" />
+        <option value="$PROJECT_DIR$/server/routes/api/createProductTest.js" />
+        <option value="$PROJECT_DIR$/server/routes/api/createVariantTest.js" />
+        <option value="$PROJECT_DIR$/db/testDBClass.js" />
+        <option value="$PROJECT_DIR$/db/sqlite.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/server/modules/testDailyTasksHelpers.js" />
+        <option value="$PROJECT_DIR$/server/testDailyTasks.js" />
       </list>
     </option>
   </component>
@@ -236,12 +303,40 @@
             <path>
               <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
               <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
+              <item name="data_classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
+              <item name="data_classes" type="462c0819:PsiDirectoryNode" />
+              <item name="product" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
+              <item name="data_classes" type="462c0819:PsiDirectoryNode" />
+              <item name="variant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
               <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
+              <item name="pages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Seamless AB Testing" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Seamless AB Testing" type="b2602c69:ProjectViewProjectNode" />
@@ -265,7 +360,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/server/server.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -276,11 +371,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\server\modules" />
       <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\data_classes\variant" />
       <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\data_classes\product" />
       <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\server" />
       <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\.ebextensions" />
-      <recent name="C:\Users\Oliver\Shopify\Seamless AB Testing\components" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -294,6 +389,11 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Server Debug" type="NodeJSConfigurationType" path-to-js-file="server/server.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -313,7 +413,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94312000" />
+    <option name="totallyTimeSpent" value="117476000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,6 +426,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22470239" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -334,7 +435,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3289689" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3289689" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39934534" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3289689" />
@@ -342,7 +443,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.3633388" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3633388" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -350,6 +451,30 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server/server.js</url>
+          <line>130</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/db/sqlite.js</url>
+          <line>26</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/server/modules/testDailyTasksHelpers.js</url>
+          <line>25</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/server/getSubscriptionUrl.js" />
@@ -483,31 +608,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/koa/lib/application.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/CreateTestVariant.js" />
     <entry file="file://$PROJECT_DIR$/pages/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="935">
           <caret line="58" column="6" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/testDBClass.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_classes/product/Product.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-323">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -539,78 +644,137 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data_classes/variant/Variant.js">
+    <entry file="file://$PROJECT_DIR$/server/modules/getProductTestsByShop.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/modules/getVariantTestsByShop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="12" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
+    <entry file="file://$PROJECT_DIR$/server/modules/updateProductTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/modules/updateVariantTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/testDB">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_classes/variant/Variant.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
-          <caret line="51" column="27" lean-forward="true" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="28" />
+          <caret line="159" column="4" selection-start-line="159" selection-start-column="4" selection-end-line="159" selection-end-column="4" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/api/createVariantTest.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="17" column="35" lean-forward="true" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/koa/lib/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="166" column="4" selection-start-line="166" selection-start-column="4" selection-end-line="166" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/node-fetch/index.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/data_classes/product/Product.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1936">
+          <caret column="15" selection-start-column="15" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/sqlite3/lib/sqlite3.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="20" column="46" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/sqlite3/lib/trace.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/routes/api/createProductTest.js">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="33" selection-start-line="28" selection-start-column="19" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/testDBClass.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/create-test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3670">
-          <caret line="95" column="36" lean-forward="true" selection-start-line="95" selection-start-column="36" selection-end-line="95" selection-end-column="36" />
+        <state relative-caret-position="-3024">
+          <caret line="132" column="56" selection-start-line="132" selection-start-column="56" selection-end-line="132" selection-end-column="56" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="132" column="21" selection-start-line="132" selection-start-column="21" selection-end-line="132" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/db/sqlite.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/getProductTestsByShop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/getVariantTestsByShop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/updateVariantTest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="29" lean-forward="true" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/routes/api/updateProductTest.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="9" lean-forward="true" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+        <state relative-caret-position="136">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/testDailyTasks.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="73" lean-forward="true" selection-start-line="7" selection-start-column="73" selection-end-line="7" selection-end-column="73" />
+        <state relative-caret-position="115">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="40" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/modules/testDailyTasksHelpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-68">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="33" />
         </state>
       </provider>
     </entry>

@@ -15,3 +15,20 @@
         //Invert flag
         //Update sales fields
 //Make call to Shopify Product API to mutate product to other version
+const helpers = require('./modules/testDailyTasksHelpers.js');
+
+const testDailyTasks = async (shopID) => {
+
+    const productTests = await helpers.getProductTestsByShop(shopID);
+    console.log("GETTING ALL PRODUCT TESTS: ", productTests);
+
+    for (let productTest in productTests) {
+        console.log("TASKS FOR PRODUCT: ", productTest);
+        //TODO: call shopify api here to retrieve sales count
+        const newSales = 0;
+        await helpers.updateProductTest(productTest.productID, productTest.flag, newSales);
+        //TODO: call shopify api here to mutate product to other version
+    }
+};
+
+module.exports.testDailyTasks = testDailyTasks;

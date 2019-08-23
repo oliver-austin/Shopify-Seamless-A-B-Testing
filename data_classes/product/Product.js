@@ -1,7 +1,7 @@
 class Product {
     constructor(productID, shopID, originalTitle, originalImage, originalDescription, originalDailySalesAverage,
                 originalDaysListed, originalTotalSales, testTitle, testImage, testDescription, testDailySalesAverage,
-                testDaysListed, testTotalSales) {
+                testDaysListed, testTotalSales, originalFlag) {
         this._productID = productID;
         this._shopID = shopID;
         this._originalTitle = originalTitle;
@@ -16,6 +16,7 @@ class Product {
         this._testDailySalesAverage = testDailySalesAverage;
         this._testDaysListed = testDaysListed;
         this._testTotalSales = testTotalSales;
+        this._originalFlag = originalFlag;
     }
 
     get productID() {
@@ -128,6 +129,14 @@ class Product {
 
     set testTotalSales(value) {
         this._testTotalSales = value;
+    }
+
+    get originalFlag() {
+        return this._originalFlag;
+    }
+
+    set originalFlag(value) {
+        this._originalFlag = value;
     }
 }
 module.exports = Product;

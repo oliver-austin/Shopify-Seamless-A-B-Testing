@@ -293,7 +293,6 @@ class CreateTestVariant extends React.Component {
     };
 
     handleProductOrVariantSubmit = (data, shopID) => {
-        console.log("SUBMIT");
         //data param is retrieved from gql, "old data", new data is stored in this.state
         //send all relevant fields form old and new data with request
         switch(this.state.productSelected){
@@ -301,7 +300,7 @@ class CreateTestVariant extends React.Component {
                 const product = new Product
                 (data.nodes[0].id, shopID, data.nodes[0].title,
                     data.nodes[0].images.edges[0].node.originalSrc, data.nodes[0].description, 0, 0, 0, this.state.productTitle,
-                    this.state.productImage, this.state.productDescription, 0, 0, 0);
+                    this.state.productImage, this.state.productDescription, 0, 0, 0, 1);
 
                 $.ajax({
                     type: "POST",
@@ -322,7 +321,7 @@ class CreateTestVariant extends React.Component {
                     data.nodes[0].variants.edges[this.state.variantSelected].node.price,
                     data.nodes[0].variants.edges[this.state.variantSelected].node.compareAtPrice,
                     0, 0, 0, this.state.variantTitle, this.state.variantImage, this.state.variantPrice,
-                    this.state.variantDiscount, 0, 0, 0);
+                    this.state.variantDiscount, 0, 0, 0, 1);
 
                 $.ajax({
                     type: "POST",

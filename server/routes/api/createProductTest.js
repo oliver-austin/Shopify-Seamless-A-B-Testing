@@ -21,7 +21,8 @@ const SQLite = require('db');
                 body._testDescription,
                 body._testDailySalesAverage,
                 body._testDaysListed,
-                body._testTotalSales
+                body._testTotalSales,
+                body._originalFlag
             );
 
             const sqlite = new SQLite();

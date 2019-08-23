@@ -1,7 +1,7 @@
 class Variant {
     constructor(variantID, productID, shopID, originalDisplayName, originalImage, originalPrice, originalDiscount,
                 originalDailySalesAverage, originalDaysListed, originalTotalSales, testDisplayName, testImage, testPrice,
-                testDiscount, testDailySalesAverage, testDaysListed, testTotalSales){
+                testDiscount, testDailySalesAverage, testDaysListed, testTotalSales, originalFlag){
         this._variantID = variantID;
         this._productID = productID;
         this._shopID = shopID;
@@ -19,6 +19,7 @@ class Variant {
         this._testDailySalesAverage = testDailySalesAverage;
         this._testDaysListed = testDaysListed;
         this._testTotalSales = testTotalSales;
+        this._originalFlag = originalFlag;
     }
 
     get variantID() {
@@ -155,6 +156,14 @@ class Variant {
 
     set testTotalSales(value) {
         this._testTotalSales = value;
+    }
+
+    get originalFlag() {
+        return this._originalFlag;
+    }
+
+    set originalFlag(value) {
+        this._originalFlag = value;
     }
 }
 module.exports = Variant;
