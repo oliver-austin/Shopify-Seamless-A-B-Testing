@@ -2,14 +2,18 @@ const SQLite = require('db');
 
 getProductTestsByShop = async (shopID) => {
         const sqlite = new SQLite();
-        console.log("getProductTestsByShop Called, shopID: ", shopID)
+        console.log("getProductTestsByShop Called, shopID: ", shopID);
         try{
             let products = await sqlite.selectProductsByShopID(shopID);
             console.log(products);
-            return await products;
+            return callback(products);
         } catch (error) {
             throw error;
         }
+};
+
+callback = (value) => {
+  return(value);
 };
 
 getVariantTestsByShop = async (shopID) => {

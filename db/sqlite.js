@@ -23,12 +23,16 @@ class SQLite {
                     throw(err)
                 }
                 else{
-                    console.log("rows:", rows);
-                    return rows;
+                    return callback(rows);
                 }
             });
-
         }
+    static callback(rows){
+        console.log("rows:", rows);
+        return rows;
+    };
+
+
 
         //test passed
         selectVariantsByShopID(shopID){

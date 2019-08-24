@@ -19,14 +19,19 @@ const helpers = require('./modules/testDailyTasksHelpers.js');
 
 const testDailyTasks = async (shopID) => {
 
-    const productTests = await helpers.getProductTestsByShop(shopID);
+    let productTestsPromise = helpers.getProductTestsByShop(shopID);
+    let productTests = await productTestsPromise;
     console.log("GETTING ALL PRODUCT TESTS: ", productTests);
+    callback(productTests)
 
-    for (let productTest in productTests) {
-        console.log("TASKS FOR PRODUCT: ", productTest);
+};
+
+callback = async (productTests) => {
+    for (let i = 0; i < productTests.length; i++) {
+        console.log("TASKS FOR PRODUCT: ", productTests[i]);
         //TODO: call shopify api here to retrieve sales count
         const newSales = 0;
-        await helpers.updateProductTest(productTest.productID, productTest.flag, newSales);
+        await helpers.updateProductTest(productTest[i].productID, productTest[i].flag, newSales);
         //TODO: call shopify api here to mutate product to other version
     }
 };
