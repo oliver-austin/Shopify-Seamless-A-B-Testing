@@ -5,7 +5,7 @@ const Variant = require('variant');
 const SQLite = require('db');
 
 module.exports = async (router) => {
-    router.post('/create-variant-test', bodyParser, (ctx, next) => {
+    router.post('/create-variant-test', bodyParser, async (ctx, next) => {
         ctx.status = 200;
         const body = ctx.request.body;
         const variant =  new Variant(
@@ -28,8 +28,8 @@ module.exports = async (router) => {
             body._testTotalSales,
             body._originalFlag
         );
-        const sqlite = new SQLite();
-        sqlite.insertVariants(variant);
+        const db = await SQLite.open();
+        SQLite.insertVariants(db, variant);
 
     });
 };

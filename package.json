@@ -54,6 +54,7 @@
     "react-apollo": "^2.5.2",
     "react-dom": "^16.8.4",
     "react-router": "^5.0.1",
+    "sqlite": "^3.0.3",
     "sqlite3": "^4.0.9",
     "store-js": "^2.0.4",
     "variant": "file:data_classes/variant"

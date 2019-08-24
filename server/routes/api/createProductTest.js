@@ -4,7 +4,7 @@ const Product = require('product');
 const SQLite = require('db');
 
     module.exports = async (router) => {
-        router.post('/create-product-test', bodyParser, (ctx, next) => {
+        router.post('/create-product-test', bodyParser, async (ctx, next) => {
             ctx.status = 200;
             const body = ctx.request.body;
             const product =  new Product(
@@ -24,9 +24,8 @@ const SQLite = require('db');
                 body._testTotalSales,
                 body._originalFlag
             );
-
-            const sqlite = new SQLite();
-            sqlite.insertProducts(product);
+            const db = await SQLite.open();
+            SQLite.insertProducts(db, product);
 
         });
     };
