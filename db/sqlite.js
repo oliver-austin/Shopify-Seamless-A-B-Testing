@@ -15,9 +15,15 @@ class SQLite {
             }
         });
     }
+
+    static callback(rows){
+        console.log("rows:", rows);
+        return rows;
+    };
+
+
         // test passed
         async selectProductsByShopID(shopID){
-            console.log("SQL select products by shopID called: ", shopID);
             await this.db.all(`SELECT * FROM products WHERE SHOP_ID = ?`, [shopID], (err, rows) => {
                 if (err) {
                     throw(err)
@@ -27,10 +33,7 @@ class SQLite {
                 }
             });
         }
-    static callback(rows){
-        console.log("rows:", rows);
-        return rows;
-    };
+
 
 
 
@@ -40,7 +43,7 @@ class SQLite {
                 if (err) {
                     throw err;
                 }
-                return rows
+                return callback(rows);
             });
         }
 
@@ -69,38 +72,26 @@ class SQLite {
         }
 
         //test passed
-        updateOriginalProductSales(newSales, productID) {
-            let newDailySalesAverage = null;
-            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalDaysListed, ORIGINAL_TOTAL_SALES originalTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
-                if (err) {
-                    throw err;
-                }
-                const newDaysListed = row.originalDaysListed + 1;
-                const newTotalSales = row.originalTotalSales + newSales;
-                newDailySalesAverage = newTotalSales/newDaysListed;
+        updateOriginalProductSales(newSales, productID, originalDaysListed, originalTotalSales) {
+            let newDailySalesAverage;
+            const newDaysListed = originalDaysListed + 1;
+            const newTotalSales = originalTotalSales + newSales;
+            newDailySalesAverage = newTotalSales/newDaysListed;
 
-                this.db.run(`UPDATE products SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
+            this.db.run(`UPDATE products SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
                             ORIGINAL_DAILY_SALES_AVERAGE = ? WHERE PRODUCT_ID = ?`,
-                            [newDaysListed, newTotalSales, newDailySalesAverage, productID], (err) => {
+                [newDaysListed, newTotalSales, newDailySalesAverage, productID], (err) => {
                     if (err) {
                         throw err;
                     }
-                    console.log("New sales average: ", newDailySalesAverage);
-
                 });
-            });
-
         }
 
         // test passed
-        updateTestProductSales(newSales, productID){
-            let newDailySalesAverage = null;
-            this.db.get('SELECT TEST_DAYS_LISTED testDaysListed, TEST_TOTAL_SALES testTotalSales FROM products WHERE PRODUCT_ID = ?', [productID], (err, row) => {
-                if (err) {
-                    throw err;
-                }
-                const newDaysListed = row.testDaysListed + 1;
-                const newTotalSales = row.testTotalSales + newSales;
+        updateTestProductSales(newSales, productID, testDaysListed, testTotalSales){
+            let newDailySalesAverage;
+                const newDaysListed = testDaysListed + 1;
+                const newTotalSales = testTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
                 //TODO: invert flag column here
 
@@ -110,21 +101,14 @@ class SQLite {
                         if (err) {
                             throw err;
                         }
-                        console.log("New sales average: ", newDailySalesAverage);
-
                     });
-            });
         }
 
         //test passed
-        updateOriginalVariantSales(newSales, variantID){
-            let newDailySalesAverage = null;
-            this.db.get('SELECT ORIGINAL_DAYS_LISTED originalDaysListed, ORIGINAL_TOTAL_SALES originalTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
-                if (err) {
-                    throw err;
-                }
-                const newDaysListed = row.originalDaysListed + 1;
-                const newTotalSales = row.originalTotalSales + newSales;
+        updateOriginalVariantSales(newSales, variantID, originalDaysListed, originalTotalSales){
+            let newDailySalesAverage;
+                const newDaysListed = originalDaysListed + 1;
+                const newTotalSales = originalTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
                 //TODO: invert flag column here
                 this.db.run(`UPDATE variants SET ORIGINAL_DAYS_LISTED = ?, ORIGINAL_TOTAL_SALES = ?,
@@ -132,41 +116,37 @@ class SQLite {
                     if (err) {
                         throw err;
                     }
-                    console.log("New sales average: ", newDailySalesAverage);
                 });
-            });
         }
 
         // test passed
-        updateTestVariantSales(newSales, variantID){
-            let newDailySalesAverage = null;
-            this.db.get('SELECT TEST_DAYS_LISTED testDaysListed, TEST_TOTAL_SALES testTotalSales FROM variants WHERE VARIANT_ID = ?', [variantID], (err, row) => {
-                if (err) {
-                    throw err;
-                }
-                const newDaysListed = row.testDaysListed + 1;
-                const newTotalSales = row.testTotalSales + newSales;
+        updateTestVariantSales(newSales, variantID, testDaysListed, testTotalSales){
+            let newDailySalesAverage;
+                const newDaysListed = testDaysListed + 1;
+                const newTotalSales = testTotalSales + newSales;
                 newDailySalesAverage = newTotalSales/newDaysListed;
                 this.db.run(`UPDATE variants SET TEST_DAYS_LISTED = ?, TEST_TOTAL_SALES = ?,
                             TEST_DAILY_SALES_AVERAGE = ? WHERE VARIANT_ID = ?`, [newDaysListed, newTotalSales, newDailySalesAverage, variantID], (err) => {
                     if (err) {
                         throw err;
                     }
-                    console.log("New sales average: ", newDailySalesAverage);
                 });
-            });
         }
 
-        updateProductFlag(productID, oldFlag){
-            this.db.run(`UPDATE products SET ORIGINAL_FLAG = ? WHERE PRODUCT_ID = ?`, [(!oldFlag), productID], (err) => {
+        updateProductFlag(productID, flag){
+            if(flag){flag = 0;}
+            else{flag = 1;}
+            this.db.run(`UPDATE products SET ORIGINAL_FLAG = ? WHERE PRODUCT_ID = ?`, [(flag), productID], (err) => {
                 if (err) {
                     throw err;
                 }
             });
         }
 
-        updateVariantFlag(variantID, oldFlag){
-            this.db.run(`UPDATE variants SET ORIGINAL_FLAG = ? WHERE VARIANT_ID = ?`, [(!oldFlag), variantID], (err) => {
+        updateVariantFlag(variantID, flag){
+            if(flag){flag = 0;}
+            else{flag = 1;}
+            this.db.run(`UPDATE variants SET ORIGINAL_FLAG = ? WHERE VARIANT_ID = ?`, [(flag), variantID], (err) => {
                 if (err) {
                     throw err;
                 }
